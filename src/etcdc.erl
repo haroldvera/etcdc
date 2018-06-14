@@ -190,7 +190,7 @@ get_allowed_opts(get) ->
 get_allowed_opts(set) ->
     [dir, prevExist, sequence, prevValue, prevIndex, ttl, ttl_renew];
 get_allowed_opts(del) ->
-    [recursive, sorted, stream, wait, waitIndex].
+    [dir, recursive, sorted, stream, wait, waitIndex].
 
 get_key_vals(#{dir:=true, nodes:=Nodes}) ->
     [get_key_vals(N) || N <- Nodes];
