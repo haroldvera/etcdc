@@ -79,6 +79,8 @@ ls(Path) ->
     case etcdc_keys:get(Path) of
         {ok, #{node:=#{dir:=true, nodes:=Nodes}}} ->
             [Key || #{key:=Key} <- Nodes];
+      {ok, #{node:=#{dir:=true}}} ->
+            [];
         {ok, #{node:=#{value:=_}}} ->
             [];
         {error, Error} ->
