@@ -5,7 +5,6 @@
 -export([url_encode/1, url_decode/1]).
 
 -define(DEFAULT_TIMEOUT, timer:seconds(10)).
--compile({parse_transform, lager_transform}).
 %% ----------------------------------------------------------------------------
 
 call(Method, PortType, Path, Opts) ->
@@ -14,7 +13,6 @@ call(Method, PortType, Path, Opts) ->
 call(Method, PortType, Path, Opts, Value) ->
     {Host, Port} = get_server_info(PortType),
     Timeout = get_timeout(Opts),
-    lager:debug("opts ~p", [Opts]),
     URL = url(Host, Port, Path, proplists:unfold(Opts)),
     ClientOpts = [with_body, {pool, default}, {timeout, Timeout}],
     case hackney:request(Method, URL, [], Value, ClientOpts) of
@@ -57,7 +55,6 @@ get_timeout(Opts) ->
 url(Host, Port, Path, Query) when is_integer(Port) ->
     Base  = ["http://", Host, ":", integer_to_list(Port)],
     NewPath = ensure_first_slash(Path),
-    lager:debug("query ~p NewPath ~p, Base ~p",[Query, NewPath, Base]),
 
     case parse_query(Query) of
         [] ->

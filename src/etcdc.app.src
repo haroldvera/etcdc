@@ -5,9 +5,7 @@
   {applications, [kernel,
                   stdlib,
                   hackney,
-                  lejson,
-                  lager
-                 ]},
+                  lejson                 ]},
   {maintainers, ["Christoffer Vikstrom"]},
   {licenses, ["Apache License, Version 2.0"]},
   {links, [{"Github", "https://github.com/cvik/etcdc"}]},
